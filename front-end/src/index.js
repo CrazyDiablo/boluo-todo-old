@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom'
 
 import App from './app'
 
-import './utils/log'
 import './assets/css/initStyle.less'
+import './utils/log'
 
 // HMR模块热替换
 if (module.hot) {
