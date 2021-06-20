@@ -32,8 +32,9 @@ module.exports = {
 		disableHostCheck: true,
 		hot: true,
 		inline: true,
-		noInfo: true,
-		// noInfo: false,
+		// noInfo: true,
+		noInfo: false,
+		clientLogLevel: 'warning',
 		after() {
 			console.log('   address：', '\x1B[34m\033[1m', `http://${this.host}:${this.port}`)
 		}
@@ -61,14 +62,12 @@ module.exports = {
 			},
 			{
 				test: /\.(le|c)ss$/,
-				use: isDev
-					? 'style-loader'
-					: [
-						MiniCssExtractPlugin.loader,
-						'css-loader',						// 这里需不需加 importLoaders: 1 ？？？
-						'postcss-loader',
-						'less-loader',
-					]
+				use: [
+					isDev ? 'style-loader': MiniCssExtractPlugin.loader,
+					'css-loader',						 	// 这里需不需加 importLoaders: 1 ？？？
+					'postcss-loader',
+					'less-loader',
+				]
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|ico|cur|svg|)$/,
