@@ -1,11 +1,27 @@
+import { useState } from 'react'
+
+import SpanEditable from '../commons/EditableSpan'
+
 import './style.less'
 
-const TodoItem = () => {
+const TodoItem = (props) => {
+    const {
+        todoType = 'TODO', // TODO ToRead ToBuy ToFix ToTest
+        doType = '需求', // '需求' 'BUG' '优化'
+        todoText = '默认文本'
+    } = props
+
+
     return (
-        <div>
-            <textarea></textarea>
-            <input />
-            <button>测试按钮</button>
+        <div className='todoItem-box'>
+            <div className='todoType'>{todoType}</div>
+            <div className='doType'>{doType}</div>
+            <SpanEditable value={todoText} />
+            <div>
+                <button>完成</button>
+                <button>删除</button>
+                <button>时钟</button>
+            </div>          
         </div>
     )
 }
