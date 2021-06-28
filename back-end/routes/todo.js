@@ -4,7 +4,7 @@ const todoList = {
     path: '/todoList',
     method: 'get',
     func: (request, response) => {
-        let path = '../db/todo.json'
+        let path = 'db/todo.json'
         fs.readFile(path, (error, data) => {
             response.send(data)
         })
