@@ -9,14 +9,17 @@ const app = express()
 app.use(express.static(path.join(__dirname, 'public')))
 
 // 注册路由
-// 主页
-const routesIndex = require('./routes/index')
 const registerRoutes = (app, routes) => {
     routes.forEach(route => {
         app[route.method](route.path, route.func)
     })
 }
+// 主页
+const routesIndex = require('./routes/index')
 registerRoutes(app, routesIndex)
+// TODO相关
+const routesTODO = require('./routes/todo')
+registerRoutes(app, routesTODO)
 
 // 解决跨域
 app.options('*', (request, response) => {

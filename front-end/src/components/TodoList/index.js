@@ -11,8 +11,8 @@ const TodoList = (props) => {
                 return (
                     <TodoItem
                         key={index} 
-                        todoType={item.todoType || ''}
-                        doType={item.doType || ''}
+                        todescription={item.todescription || ''}
+                        description={item.description || ''}
                         todoText={item.todoText || ''}
                         completed={item.completed || ''}
                     />
