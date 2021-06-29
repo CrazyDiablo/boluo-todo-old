@@ -1,30 +1,44 @@
-const fs = require('fs')
+const todo = require('../modal/todo')
 
-const todoList = {
-    path: '/todoList',
+const allTodo = {
+    path: '/api/todo/all',
     method: 'get',
     func: (request, response) => {
-        let path = 'db/todo.json'
-        fs.readFile(path, (error, data) => {
-            response.send(data)
-        })
+        let data = todo.all()
+        response.send(data)
     }
 }
+
 const addTodo = {
-    path: '/addTodo',
+    path: '/api/todo/add',
     method: 'post',
     func: (request, response) => {
-        request.on('data', (data) => {
-            // JSON.parse(data)
-            // TODO post数据加到DB中
-            console.log('data', data.toString())
-        })
+        console.log('post')
+        console.log('request', request.body)
+    }
+}
+
+const updateTodo = {
+    path: '/api/todo/update',
+    method: 'post',
+    func: (request, response) => {
+
+    }
+}
+
+const deleteTodo = {
+    path: '/api/todo/delete',
+    method: 'post',
+    func: (request, response) => {
+
     }
 }
 
 const routes = [
-    todoList,
+    allTodo,
     addTodo,
+    updateTodo,
+    deleteTodo,
 ]
 
 module.exports = routes

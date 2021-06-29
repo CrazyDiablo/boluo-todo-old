@@ -8,7 +8,7 @@ const App = () => {
     let ajax = new Ajax()
     const getTodoList = async () => {
         let data = []
-        let path = 'http://127.0.0.1:80/todoList'
+        let path = 'http://127.0.0.1:80/api/todo/all'
         ajax.get(path, (res) => {
             data = [...res]
             console.log('data', data)
@@ -24,7 +24,7 @@ const App = () => {
             }
         ]
         data = JSON.stringify(data)
-        let path = 'http://127.0.0.1:80/addTodo'
+        let path = 'http://127.0.0.1:80/api/todo/add'
         ajax.post(path, data, () => {
 
         })
