@@ -6,7 +6,7 @@ import './style.less'
 
 const TodoItem = (props) => {
     const {
-        todescription = 'TODO', // TODO ToRead ToBuy ToFix ToTest
+        todoType = 'TODO', // TODO ToRead ToBuy ToFix ToTest
         description = '需求', // '需求' 'BUG' '优化'
         todoText = '默认文本'
     } = props
@@ -14,7 +14,7 @@ const TodoItem = (props) => {
 
     return (
         <div className='todoItem-box'>
-            <div className='todescription'>{todescription}</div>
+            <div className='todoType'>{todoType}</div>
             <div className='description'>{description}</div>
             <SpanEditable value={todoText} />
             <div>

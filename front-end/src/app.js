@@ -15,16 +15,17 @@ const App = () => {
         })
     }
     const addTodo = () => {
-        let data = [
+        let data = 
             {
-                "todescription": "TODO",
+                "id": "3",
+                "todoType": "TODO",
                 "description": "测试",
                 "todoText": "添加TODO接口",
                 "completed": false
             }
-        ]
+        
         // let data = {
-        //     "todescription": "TODO",
+        //     "todoType": "TODO",
         //     "description": "测试",
         //     "todoText": "添加TODO接口",
         //     "completed": false
@@ -34,25 +35,25 @@ const App = () => {
         data = JSON.stringify(data)
         let path = 'http://127.0.0.1:80/api/todo/add'
         ajax.post(path, data, () => {
-            console.log('哈哈哈')
+            // console.log('哈哈哈')
         })
     }
     getTodoList()
     addTodo()
     let todoData = [
         {
-            todescription: 'TODO',
+            todoType: 'TODO',
             description: '需求',
             todoText: '接口增删改查',
             completed: false,
         },
         {
-            todescription: 'ToRead',
+            todoType: 'ToRead',
             todoText: '接口ssss增删改查',
             complete: false,
         },
         {
-            todescription: 'TODO',
+            todoType: 'TODO',
             description: 'BUG',
             todoText: '接口增fffff删改查',
             complete: true,
