@@ -18,6 +18,7 @@ todo.all = () => {
 }
 
 todo.add = (todoList, path) => {
+    
     // let path = 'db/todo.json'
     // let todoData = fs.readFileSync(path, {encoding: 'utf-8'})
     // todoData.push(todoList)

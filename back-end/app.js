@@ -1,6 +1,5 @@
 const { response } = require('express')
 const express = require('express')
-const { request } = require('http')
 const path = require('path')
 
 const app = express()
@@ -14,18 +13,21 @@ const registerRoutes = (app, routes) => {
         app[route.method](route.path, route.func)
     })
 }
+// 解决跨域
+app.all("*", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "content-type")
+    res.header("Access-Control-Allow-Methods", "DELETE,PUT,POST,GET,OPTIONS")
+    if (req.method.toLowerCase() == 'options') {
+        res.send(200)
+    }
+    next()
+})
 // 主页
 const routesIndex = require('./routes/index')
 registerRoutes(app, routesIndex)
 // TODO相关
 const routesTODO = require('./routes/todo')
 registerRoutes(app, routesTODO)
-
-// 解决跨域
-app.options('*', (request, response) => {
-    response.set('Access-Control-Allow-Origin', '*')
-    response.header('Access-Control-Allow-Headers', 'Content-Type')
-    response.end()
-})
 
 module.exports = app

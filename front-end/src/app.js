@@ -23,10 +23,18 @@ const App = () => {
                 "completed": false
             }
         ]
+        // let data = {
+        //     "todescription": "TODO",
+        //     "description": "测试",
+        //     "todoText": "添加TODO接口",
+        //     "completed": false
+        // }
+        // let data = '哈哈哈呵呵呵嘿嘿嘿吼吼吼'
+            
         data = JSON.stringify(data)
         let path = 'http://127.0.0.1:80/api/todo/add'
         ajax.post(path, data, () => {
-
+            console.log('哈哈哈')
         })
     }
     getTodoList()
