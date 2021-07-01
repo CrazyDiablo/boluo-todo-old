@@ -23,10 +23,10 @@ app.all("*", function (req, res, next) {
     }
     next()
 })
-// 主页
-const routesIndex = require('./routes/index')
-registerRoutes(app, routesIndex)
-// TODO相关
+// 页面路由
+const routesPage = require('./routes/page')
+registerRoutes(app, routesPage)
+// TODO API 路由
 const routesTODO = require('./routes/todo')
 registerRoutes(app, routesTODO)
 

@@ -14,7 +14,6 @@ const _ajax = (method, url, data, headers, callback, async = true) => {
 
     r.onreadystatechange = () => {
         if (r.readyState === 4) {
-            // console.log('callback', callback)
             // console.log('r.response', r.response)
             callback(r.response)
         }
@@ -47,7 +46,6 @@ class Ajax {
             'Content-Type': 'application/json',
         }
         _ajax(method, url, '', headers, (r) => {
-            // console.log('_ajax r', r)
             let t = JSON.parse(r)
             callback(t)
         })
@@ -60,8 +58,6 @@ class Ajax {
         }
         _ajax('POST', url, data, headers, (r) => {
             let t = JSON.parse(r)
-            // console.log('r', r)
-            // console.log('t', t)
             callback(t)
         })
     }

@@ -15,31 +15,42 @@ const App = () => {
         })
     }
     const addTodo = () => {
-        let data = 
-            {
-                "id": "3",
-                "todoType": "TODO",
-                "description": "测试",
-                "todoText": "添加TODO接口",
-                "completed": false
-            }
-        
-        // let data = {
-        //     "todoType": "TODO",
-        //     "description": "测试",
-        //     "todoText": "添加TODO接口",
-        //     "completed": false
-        // }
-        // let data = '哈哈哈呵呵呵嘿嘿嘿吼吼吼'
-            
+        let data = {
+            "todoType": "TODO",
+            "description": "测试",
+            "todoText": "添加TODO接口",
+            "completed": false
+        }
         data = JSON.stringify(data)
         let path = 'http://127.0.0.1:80/api/todo/add'
-        ajax.post(path, data, () => {
-            // console.log('哈哈哈')
+        ajax.post(path, data, (res) => {
+            // console.log(res)
+        })
+    }
+    const updateTodo = () => {
+        let data = {
+            "id": 2,
+            "todoType": "TODO",
+            "description": "测试",
+            "todoText": "测试修改TODO接口",
+            "completed": false
+        }
+        data = JSON.stringify(data)
+        let path = 'http://127.0.0.1:80/api/todo/update'
+        ajax.post(path, data, (res) => {
+            // console.log(res)
+        })
+    }
+    const deleteTodo = () => {
+        let path = 'http://127.0.0.1:80/api/todo/delete?id=3'
+        ajax.get(path, (res) => {
+            // console.log(res)
         })
     }
     getTodoList()
     addTodo()
+    // updateTodo()
+    // deleteTodo()
     let todoData = [
         {
             todoType: 'TODO',

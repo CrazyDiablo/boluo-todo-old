@@ -14,8 +14,8 @@ const addTodo = {
     path: '/api/todo/add',
     method: 'post',
     func: async (request, response) => {
-        let data = await bodyParse(request)
-        let resStr = todo.add(data)
+        let dataList = await bodyParse(request)
+        let resStr = todo.add(dataList)
         response.send(resStr)
     }
 }
@@ -23,16 +23,20 @@ const addTodo = {
 const updateTodo = {
     path: '/api/todo/update',
     method: 'post',
-    func: (request, response) => {
-
+    func: async (request, response) => {
+        let dataList = await bodyParse(request)
+        let resStr = todo.update(dataList)
+        response.send(resStr)
     }
 }
 
 const deleteTodo = {
     path: '/api/todo/delete',
-    method: 'post',
+    method: 'get',
     func: (request, response) => {
-
+        let id = Number(request.query.id)
+        let resStr = todo.delete(id)
+        response.send(resStr)
     }
 }
 
