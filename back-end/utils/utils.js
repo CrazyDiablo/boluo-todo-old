@@ -15,10 +15,10 @@ const bodyParse = async (request) => {
     let data = []
     await request.on('data', (chunk) => {
         let strData = chunk.toString('utf-8')
-        // 第一次解析 去掉转义字符/
         data = JSON.parse(strData)
-        // 第二次解析 转换为对象/数组
-        data = JSON.parse(data)
+        if (typeof(data) === 'string') {
+            data = JSON.parse(data)
+        }
     })
     return data
 }

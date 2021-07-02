@@ -15,8 +15,8 @@ const addTodo = {
     method: 'post',
     func: async (request, response) => {
         let dataList = await bodyParse(request)
-        let resStr = todo.add(dataList)
-        response.send(resStr)
+        let res = todo.add(dataList)
+        response.send(res)
     }
 }
 
@@ -25,8 +25,8 @@ const updateTodo = {
     method: 'post',
     func: async (request, response) => {
         let dataList = await bodyParse(request)
-        let resStr = todo.update(dataList)
-        response.send(resStr)
+        let res = todo.update(dataList)
+        response.send(res)
     }
 }
 
@@ -35,8 +35,8 @@ const deleteTodo = {
     method: 'get',
     func: (request, response) => {
         let id = Number(request.query.id)
-        let resStr = todo.delete(id)
-        response.send(resStr)
+        let res = todo.delete(id)
+        response.send(res)
     }
 }
 

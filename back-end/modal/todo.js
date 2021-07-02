@@ -17,15 +17,36 @@ const writeDB = (dataList, dbPath) => {
     fs.writeFileSync(dbPath, data)
 }
 
+const handleStandardRes = (data) => {
+    let res = {}
+    if (typeof(data) === 'string') {
+        res.message = data
+        res = JSON.stringify(res)
+    } else if (Array.isArray(data)) {
+        res = JSON.stringify(data)
+    } else {
+        res = JSON.stringify(res)
+    }
+    
+    return res
+}
+
 todo.dataPath = 'db/todo.json'
 
 todo.all = () => {
     let todoData = readDB(todo.dataPath)
-    todoData = JSON.stringify(todoData)
-    return todoData
+    let res = handleStandardRes(todoData)
+    return res
 }
 // 默认只添加单个对象 push处理
 todo.add = (todoItem) => {
+    let res = handleStandardRes('添加成功')
+
+    if (typeof(todoItem) === 'object' && Array.isArray(todoItem)) {
+        res = handleStandardRes('添加失败')
+        return res
+    }
+
     let path = todo.dataPath
     let todoList = readDB(path)
     let lastIndex = todoList.length - 1
@@ -34,13 +55,13 @@ todo.add = (todoItem) => {
     todoItem.id = lastId + 1
     todoList.push(todoItem)
     writeDB(todoList, path)
-    return '添加成功'
+    return res
 }
 
 todo.update = (todoItem) => {
     let path = todo.dataPath
     let todoList = readDB(path)
-    let resStr = '修改失败 未找到该todo'
+    let res = handleStandardRes('修改失败 未找到该todo')
 
     // 根据id替换对应todo 的属性值
     todoList.forEach(item => {
@@ -51,26 +72,28 @@ todo.update = (todoItem) => {
                 }
             }
             writeDB(todoList, path)
-            resStr = '修改成功'
+            res = handleStandardRes('修改成功')
             return
         }
     })
-    return resStr
+    return res
 }
 
 todo.delete = (todoId) => {
     let path = todo.dataPath
     let todoList = readDB(path)
+    let res = handleStandardRes('删除成功')
 
     for (let i = 0; i < todoList.length; i++) {
         let todoItem = todoList[i]
         if (todoItem.id === todoId) {
             todoList.splice(i, 1)
             writeDB(todoList, path)
-            return '删除成功'
+            return res
         }
     }
-    return '删除失败 未找到该todo'
+    res = handleStandardRes('删除失败 未找到该todo')
+    return res
 }
 
 
