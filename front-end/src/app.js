@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import TodoList from './components/TodoList'
 import todo from './service/todo'
 
@@ -5,49 +7,30 @@ import './app.less'
 import { useEffect } from 'react'
 
 const App = () => {
-    const initData = async () => {
-        let data = await todo.all()
-        let addData = {
-            "todoType": "111",
-            "description": "222",
-            "todoText": "333",
-            "completed": 444,
-        }
-        // let addData = [{
-        //     "todoType": "111",
-        //     "description": "222",
-        //     "todoText": "333",
-        //     "completed": 444,
-        // }]
-        let resAdd = await todo.add(addData)
-
-        let updateData = {
-            "todoType": "111",
-            "description": "222",
-            "todoText": "333",
-            "completed": 444,
-        }
-        // let data = await todo.update()
-        // let data = await todo.delete()
-        
-        
-        console.log('resAdd', resAdd)
-        console.log('data init', data)
+    const [todoData, setTodoData] = useState([])
+    
+    const initToDoData = async () => {
+        let resData = await todo.all()
+        setTodoData(resData)
     }
+    
     useEffect(() => {
-        initData()
+        initToDoData()
     }, [])
 
     return (
         <div className='app'>
             <header>菠萝TODO</header>
                 <div className='todo-list'>
-                    {/* <TodoItem /> */}
-                    
                     <div className='todoConstructor'>
-                        <button>添加TODO</button>
+                        <button onClick={() => console.log('hhhh')}>添加TODO</button>
+                        <form></form>
+                        <div>
+                            <input defaultValue='需求' style={{width: 30}} />
+                            <input />
+                        </div>
                     </div>
-                    {/* <TodoList todoData={todoData} /> */}
+                    <TodoList todoData={todoData} />
                 </div>         
             <footer></footer>
         </div>

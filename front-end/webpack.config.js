@@ -28,7 +28,7 @@ module.exports = {
 	devtool: isDev ? 'eval-cheap-module-source-map' : false,
 	devServer: {
 		port: 8088,
-		host: '127.0.0.1',
+		host: '127.0.0.2',
 		disableHostCheck: true,
 		hot: true,
 		inline: true,

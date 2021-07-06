@@ -32,19 +32,17 @@ todo.update = () => {
         let path = 'api/todo/update'
         let url = baseUrl + path
         ajax.get(url, (res) => {
-            resolve(data)
+            resolve(res)
         })
     })
 }
 
-todo.deleteTodo = () => {
+todo.delete = (id) => {
     return new Promise((resolve, reject) => {
-        let path = 'api/todo/delete'
+        let path = `api/todo/delete?id=${id}`
         let url = baseUrl + path
-        let data = []
         ajax.get(url, (res) => {
-            data = [...res]
-            resolve(data)
+            resolve(res)
         })
     })
 }
